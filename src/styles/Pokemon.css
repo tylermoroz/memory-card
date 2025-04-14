@@ -1,0 +1,13 @@
+.pokemon-card {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: azure;
+}
+
+.pokemon-card img {
+  width: 8em;
+}

@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from "react";
+import "../styles/Pokemon.css";
+
+function PokemonCard({ name }) {
+  const [pokemon, setPokemon] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPokemon(data);
+        setLoading(false);
+      });
+  }, [name]);
+
+  if (loading) return <p>Loading...</p>;
+
+  return (
+    <div className="pokemon-card">
+      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+    </div>
+  );
+}
+
+export default PokemonCard;
