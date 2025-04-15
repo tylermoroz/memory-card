@@ -1,22 +1,40 @@
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import PokemonCard from "./components/Pokemon.jsx";
 import "./styles/App.css";
 
 function App() {
+  const [deck, setDeck] = useState([]);
+
+  const shuffleDeck = useMemo(() => {
+    const pokemonNames = [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise",
+      "pikachu",
+      "raichu",
+      "ditto",
+    ];
+    return () => {
+      const shuffled = [...pokemonNames].sort(() => Math.random() - 0.5);
+      setDeck(shuffled);
+    };
+  }, []);
+
+  useEffect(() => {
+    shuffleDeck();
+  }, [shuffleDeck]);
+
   return (
     <div className="pokedex">
-      <PokemonCard name="bulbasaur"></PokemonCard>
-      <PokemonCard name="ivysaur"></PokemonCard>
-      <PokemonCard name="venusaur"></PokemonCard>
-      <PokemonCard name="charmander"></PokemonCard>
-      <PokemonCard name="charmeleon"></PokemonCard>
-      <PokemonCard name="charizard"></PokemonCard>
-      <PokemonCard name="squirtle"></PokemonCard>
-      <PokemonCard name="wartortle"></PokemonCard>
-      <PokemonCard name="blastoise"></PokemonCard>
-      <PokemonCard name="pikachu"></PokemonCard>
-      <PokemonCard name="raichu"></PokemonCard>
-      <PokemonCard name="ditto"></PokemonCard>
+      {deck.map((name, index) => (
+        <PokemonCard onClick={shuffleDeck} key={index} name={name} />
+      ))}
     </div>
   );
 }

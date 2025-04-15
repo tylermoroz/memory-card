@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Pokemon.css";
 
-function PokemonCard({ name }) {
+function PokemonCard({ name, onClick }) {
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ function PokemonCard({ name }) {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="pokemon-card">
+    <div className="pokemon-card" onClick={onClick}>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />
     </div>
   );
