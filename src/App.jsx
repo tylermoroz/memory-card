@@ -1,41 +1,73 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import PokemonCard from "./components/Pokemon.jsx";
 import "./styles/App.css";
 
-function App() {
-  const [deck, setDeck] = useState([]);
+const pokemonNames = [
+  "bulbasaur",
+  "ivysaur",
+  "venusaur",
+  "charmander",
+  "charmeleon",
+  "charizard",
+  "squirtle",
+  "wartortle",
+  "blastoise",
+  "pikachu",
+  "raichu",
+  "ditto",
+];
 
-  const shuffleDeck = useMemo(() => {
-    const pokemonNames = [
-      "bulbasaur",
-      "ivysaur",
-      "venusaur",
-      "charmander",
-      "charmeleon",
-      "charizard",
-      "squirtle",
-      "wartortle",
-      "blastoise",
-      "pikachu",
-      "raichu",
-      "ditto",
-    ];
-    return () => {
-      const shuffled = [...pokemonNames].sort(() => Math.random() - 0.5);
-      setDeck(shuffled);
-    };
-  }, []);
+const shuffleArray = (array) => {
+  return [...array].sort(() => Math.random() - 0.5);
+};
+
+function App() {
+  const [deck, setDeck] = useState(() => shuffleArray(pokemonNames));
+  const [selected, setSelected] = useState([]);
+  const [highScore, setHighScore] = useState(0);
+
+  const selectPokemon = (name) => {
+    if (!selected.includes(name)) {
+      setSelected((prev) => {
+        const newSelected = [...prev, name];
+        console.log(newSelected);
+        return newSelected;
+      });
+    } else {
+      setSelected([]);
+    }
+  };
+
+  const shuffleDeck = () => {
+    const shuffled = shuffleArray(pokemonNames);
+    setDeck(shuffled);
+  };
+
+  const handleClick = (name) => {
+    selectPokemon(name);
+    shuffleDeck();
+  };
 
   useEffect(() => {
-    shuffleDeck();
-  }, [shuffleDeck]);
+    if (selected.length > highScore) {
+      setHighScore(selected.length);
+    }
+  }, [selected, highScore]);
 
   return (
-    <div className="pokedex">
-      {deck.map((name, index) => (
-        <PokemonCard onClick={shuffleDeck} key={index} name={name} />
-      ))}
-    </div>
+    <>
+      <h1>Current Score: {selected.length}</h1>
+      <h1>High Score: {highScore}</h1>
+      <div className="pokedex">
+        {deck.map((name) => (
+          <PokemonCard
+            onClick={() => handleClick(name)}
+            key={name}
+            name={name}
+          />
+        ))}
+      </div>
+    </>
   );
 }
 
