@@ -49,10 +49,8 @@ function App() {
   };
 
   useEffect(() => {
-    if (selected.length > highScore) {
-      setHighScore(selected.length);
-    }
-  }, [selected, highScore]);
+    setHighScore((prev) => (selected.length > prev ? selected.length : prev));
+  }, [selected]);
 
   return (
     <>
