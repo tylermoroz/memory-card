@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Pokemon.css";
+import "../styles/PokemonCard.css";
 
 function PokemonCard({ name, onClick }) {
   const [pokemon, setPokemon] = useState(null);
