@@ -1,21 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PokemonCard from "./components/Pokemon.jsx";
+import ScoreBoard from "./components/ScoreBoard.jsx";
+import Pokedex from "./components/Pokedex.jsx";
+import { pokemonNames } from "./names.js";
 import "./styles/App.css";
-
-const pokemonNames = [
-  "bulbasaur",
-  "ivysaur",
-  "venusaur",
-  "charmander",
-  "charmeleon",
-  "charizard",
-  "squirtle",
-  "wartortle",
-  "blastoise",
-  "pikachu",
-  "raichu",
-  "ditto",
-];
 
 const shuffleArray = (array) => {
   return [...array].sort(() => Math.random() - 0.5);
@@ -54,17 +41,8 @@ function App() {
 
   return (
     <>
-      <h1>Current Score: {selected.length}</h1>
-      <h1>High Score: {highScore}</h1>
-      <div className="pokedex">
-        {deck.map((name) => (
-          <PokemonCard
-            onClick={() => handleClick(name)}
-            key={name}
-            name={name}
-          />
-        ))}
-      </div>
+      <ScoreBoard currentScore={selected.length} highScore={highScore} />
+      <Pokedex deck={deck} onClick={handleClick} />
     </>
   );
 }

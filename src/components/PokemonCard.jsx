@@ -11,6 +11,10 @@ function PokemonCard({ name, onClick }) {
       .then((data) => {
         setPokemon(data);
         setLoading(false);
+      })
+      .catch(() => {
+        setPokemon(null);
+        setLoading(false);
       });
   }, [name]);
 
