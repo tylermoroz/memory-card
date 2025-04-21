@@ -1,4 +1,5 @@
 import PokemonCard from "./PokemonCard.jsx";
+import "../styles/Pokedex.css";
 
 function Pokedex({ deck, onClick }) {
   return (
