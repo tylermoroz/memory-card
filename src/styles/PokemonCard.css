@@ -10,5 +10,12 @@
 }
 
 .pokemon-card img {
-  width: 8em;
+  width: 10em;
+}
+
+@media (max-width: 600px) {
+  .pokemon-card {
+    height: 8em;
+    width: 8em;
+  }
 }

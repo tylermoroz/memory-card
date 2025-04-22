@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import ScoreBoard from "./components/ScoreBoard.jsx";
 import Pokedex from "./components/Pokedex.jsx";
 import { pokemonNames } from "./names.js";
-import "./styles/App.css";
 
 const shuffleArray = (array) => {
   return [...array].sort(() => Math.random() - 0.5);
@@ -17,7 +16,6 @@ function App() {
     if (!selected.includes(name)) {
       setSelected((prev) => {
         const newSelected = [...prev, name];
-        console.log(newSelected);
         return newSelected;
       });
     } else {
