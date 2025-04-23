@@ -1,0 +1,36 @@
+.head {
+  grid-area: head;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  color: rgb(251, 255, 1);
+}
+
+.head h1 {
+  font-size: 3em;
+}
+
+.head p {
+  font-size: 1em;
+}
+
+@media (max-width: 600px) {
+  .head h1 {
+    font-size: 1.6em;
+  }
+
+  .head p {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 400px) {
+  .head h1 {
+    font-size: 1.4em;
+  }
+
+  .head p {
+    font-size: 0.8em;
+  }
+}

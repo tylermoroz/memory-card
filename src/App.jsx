@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header from "./components/Header.jsx";
 import ScoreBoard from "./components/ScoreBoard.jsx";
 import Pokedex from "./components/Pokedex.jsx";
 import { pokemonNames } from "./names.js";
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <ScoreBoard currentScore={selected.length} highScore={highScore} />
       <Pokedex deck={deck} onClick={handleClick} />
     </>

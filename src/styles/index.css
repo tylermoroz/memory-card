@@ -8,8 +8,8 @@
 
 :root {
   --font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --bg-color: #f9f9f9;
-  --text-color: #222;
+  --bg-color: #7e0707;
+  --text-color: #000000;
   --accent-color: #0077ff;
 
   font-size: 16px;
@@ -17,7 +17,14 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-color);
+  background: linear-gradient(
+    to bottom,
+    #350202 0%,
+    #500303 2%,
+    #630303 5%,
+    var(--bg-color) 10%,
+    var(--bg-color) 100%
+  );
   color: var(--text-color);
   line-height: 1.5;
   min-height: 100vh;
@@ -25,19 +32,23 @@ body {
 }
 
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    "head scoreboard"
+    "pokedex pokedex";
   align-items: center;
-  gap: 2rem;
+  gap: 5rem;
 }
 
 @media (max-width: 600px) {
   #root {
     padding: 1rem;
-    gap: 1rem;
+    gap: 2rem;
     max-width: 100%;
   }
 
