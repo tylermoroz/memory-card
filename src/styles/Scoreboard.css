@@ -22,3 +22,9 @@
     font-size: 0.35em;
   }
 }
+
+@media (max-width: 370px) {
+  .scoreboard {
+    font-size: 0.32em;
+  }
+}
